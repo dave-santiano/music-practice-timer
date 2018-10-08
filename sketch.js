@@ -73,14 +73,14 @@ function Task(taskName, time, isFinished){
     if(seconds <= 9){
       seconds = "0" + seconds;
     }
-    this.clockTime = hours + ":" + minutes + ":" + seconds;
-
+    
     //decrement the time in milliseconds
     
     if (this.time <= 0){
       this.finishedPracticeEvent();
     }
     else if(this.time > 0 && this.isFinished != true && this.isPaused != true){
+      this.clockTime = hours + ":" + minutes + ":" + seconds;
       this.time -= 0.1;
       setTimeout(function(){self.countDown()}, 100);
     }
