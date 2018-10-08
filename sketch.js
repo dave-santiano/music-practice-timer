@@ -37,7 +37,7 @@ function Task(taskName, time, isFinished){
   
 
   //This will set the initial time from seconds into clock time
-  var hours = Math.floor(time / 3600);
+  var hours   = Math.floor(time / 3600);
   var minutes = Math.floor(time / 60) % 60;
   var seconds = Math.floor(time % 60);
 
@@ -76,13 +76,12 @@ function Task(taskName, time, isFinished){
     this.clockTime = hours + ":" + minutes + ":" + seconds;
 
     //decrement the time in milliseconds
-    if(this.time > 0){
-      this.time -= 0.1;
-    }
-    else if (this.time <= 0){
+    
+    if (this.time <= 0){
       this.finishedPracticeEvent();
     }
     else if(this.time > 0 && this.isFinished != true && this.isPaused != true){
+      this.time -= 0.1;
       setTimeout(function(){self.countDown()}, 100);
     }
     else{
@@ -102,7 +101,7 @@ function setup(){
   taskInput = createInput();
   taskInput.position(20, 65);
 
-  taskSubmitButton = createButton('submit');
+  taskSubmitButton = createButton('Submit');
   taskSubmitButton.position(taskInput.x + taskInput.width, 65);
   taskSubmitButton.mousePressed(addToList);
 
