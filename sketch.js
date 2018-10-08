@@ -76,9 +76,10 @@ function Task(taskName, time, isFinished){
     this.clockTime = hours + ":" + minutes + ":" + seconds;
 
     //decrement the time in milliseconds
-    this.time -= 0.1;
-
-    if (this.time <= 0){
+    if(this.time > 0){
+      this.time -= 0.1;
+    }
+    else if (this.time <= 0){
       this.finishedPracticeEvent();
     }
     else if(this.time > 0 && this.isFinished != true && this.isPaused != true){
@@ -94,9 +95,9 @@ function Task(taskName, time, isFinished){
 function setup(){
   canvas = createCanvas(screenWidth, screenHeight);
 
-  redValue = 200;
+  redValue   = 200;
   greenValue = 120;
-  blueValue = 120;
+  blueValue  = 120;
 
   taskInput = createInput();
   taskInput.position(20, 65);
@@ -163,12 +164,10 @@ function calculateLongestTaskName(){
     longestName = practiceList[0];
   }
   else{
-    //console.log('hit');
     longestName = practiceList[0];
     for(var i = 0; i < practiceList.length; i++){
       if(practiceList[i].taskName.length > longestName.taskName.length){
         longestName = practiceList[i];
-        console.log(longestName.taskName);
       }
     }
   }
